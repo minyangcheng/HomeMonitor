@@ -137,7 +137,7 @@ public class ChatActivity extends Activity implements RtcListener, View.OnClickL
             public void run() {
                 switch (iceConnectionState) {
                     case CONNECTED:
-                        ToastUtils.showShort("远程连接断开");
+                        ToastUtils.showShort("远程连接成功");
                         break;
                     case DISCONNECTED:
                     case CLOSED:

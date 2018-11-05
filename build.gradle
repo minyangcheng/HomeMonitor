@@ -27,3 +27,10 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    keyAlias="zhongan"
+    keyPassword="123456"
+    storeFile="../keystores/ZhongAn.keystore"
+    storePassword="123456"
+}

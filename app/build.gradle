@@ -2,6 +2,16 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
+
+    signingConfigs {
+        release {
+            keyAlias rootProject.ext.keyAlias
+            keyPassword rootProject.ext.keyPassword
+            storeFile file(rootProject.ext.storeFile)
+            storePassword rootProject.ext.storePassword
+        }
+    }
+
     defaultConfig {
         applicationId "com.min.home.monitor"
         minSdkVersion 15
@@ -21,6 +31,7 @@ android {
             minifyEnabled false
             zipAlignEnabled false
             shrinkResources false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         release {
@@ -28,6 +39,7 @@ android {
             minifyEnabled false
             zipAlignEnabled true
             shrinkResources false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

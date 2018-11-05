@@ -18,10 +18,10 @@ WebRTC是一个开源项目，旨在使得浏览器能为实时通信（RTC）�
 目前此开源项目也支持Android、IOS了，使得Android和IOS设备作为终端设备能够像浏览器一样，进行即时通信。
 >https://webrtc.org/native-code/android/
 
-#### 信令服务器
+##### 信令服务器
 WebRTC使用RTCPeerConnection在浏览器之间传递流数据，但也需要一种协调通信和发送控制消息的机制，这一过程称为信令。 WebRTC没有指定信令实现的方法和协议。这里采用ndoe平台的socket.io实现信令服务器功能.
 
-#### 打洞服务器和中继服务器
+##### 打洞服务器和中继服务器
 WebRTC被设计为点对点通信，因此用户可以通过最直接的路线进行连接。 但是，WebRTC是为了应对真实世界的网络而构建的：客户端应用程序需要穿越NAT网关和防火墙，并且在直接连接失败的情况下需要对等网络需求回退。 作为该过程的一部分，WebRTC API使用STUN服务器来获取您的计算机的IP地址，并且在对等通信失败的情况下使TURN服务器充当中继服务器。这里采用coturn开源项目实现打洞服务器和中继服务器.
 
 #### socket.io（信令服务器）
@@ -38,7 +38,7 @@ coturn是作为一个STUN/TURN来使用，其中STUN是用于P2P，而TURN是用
 ### 聊天交互流程
 
 这里直接看图:
-![](http://phpk3imnj.bkt.clouddn.com/0004.jpg)
+![](http://phpk3imnj.bkt.clouddn.com/0006.jpg)
 
 ### 关键代码
 
@@ -444,5 +444,3 @@ public class RtcClient {
 
 }
 ```
-
-

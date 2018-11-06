@@ -45,6 +45,8 @@ public class ChatActivity extends Activity implements RtcListener, View.OnClickL
     private String roomNo;
     private int useType; //1监控端 2查看端
 
+    private boolean mirror;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +95,12 @@ public class ChatActivity extends Activity implements RtcListener, View.OnClickL
         pipRenderer.setEnableHardwareScaler(true);
         fullscreenRenderer.setEnableHardwareScaler(true);
         setSwappedFeeds();
+        switchMirror();
+    }
+
+    private void switchMirror() {
+        fullscreenRenderer.setMirror(!this.mirror);
+        this.mirror = !this.mirror;
     }
 
     private void initRtcClient() {
@@ -174,8 +182,6 @@ public class ChatActivity extends Activity implements RtcListener, View.OnClickL
         boolean isSwappedFeeds = useType == 1;
         localProxyRenderer.setTarget(isSwappedFeeds ? fullscreenRenderer : pipRenderer);
         remoteProxyRenderer.setTarget(isSwappedFeeds ? pipRenderer : fullscreenRenderer);
-        fullscreenRenderer.setMirror(isSwappedFeeds);
-        pipRenderer.setMirror(!isSwappedFeeds);
     }
 
     @Override
@@ -190,6 +196,7 @@ public class ChatActivity extends Activity implements RtcListener, View.OnClickL
             }
         } else if (id == R.id.iv_switch_camear) {
             client.switchCamera();
+            switchMirror();
         }
     }
 
